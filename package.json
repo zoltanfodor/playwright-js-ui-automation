@@ -27,5 +27,8 @@
     "mocha": "^8.1.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
     "sinon": "^7.3.2"
+  },
+  "devDependencies": {
+    "protractor": "^7.0.0"
   }
 }

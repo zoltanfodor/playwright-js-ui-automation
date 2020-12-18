@@ -8,23 +8,23 @@ Feature: EPAM site
     Then The page is opened
     And The search form is visible
 
-    When Click on Location filter box
-    And Select `<Country>` / `<City>`
-    Then The Location filter box should contain <City>
-
-    When Click on Department filter box
-    And Select <Department> element
-    Then The Department filter box should contain "Selected: 1" tile
-
-    When Click on Search button
-    Then The `<PositionName>` position should be visible
-    And The department of the position should be `<Department>`
-    And The location of the position should be `<City>`, `<Country>`
-    And There should be an Apply button for the `<PositionName>` position
-
-    When Click on Apply button of <PositionName>
-    Then The Job description should contain `<City>`
-    And The Job description should contain `<PositionName>`
+#    When Click on Location filter box
+#    And Select `<Country>` / `<City>`
+#    Then The Location filter box should contain <City>
+#
+#    When Click on Department filter box
+#    And Select <Department> element
+#    Then The Department filter box should contain "Selected: 1" tile
+#
+#    When Click on Search button
+#    Then The `<PositionName>` position should be visible
+#    And The department of the position should be `<Department>`
+#    And The location of the position should be `<City>`, `<Country>`
+#    And There should be an Apply button for the `<PositionName>` position
+#
+#    When Click on Apply button of <PositionName>
+#    Then The Job description should contain `<City>`
+#    And The Job description should contain `<PositionName>`
 
     Examples:
       | # | Country | City     | Department                | PositionName             |
