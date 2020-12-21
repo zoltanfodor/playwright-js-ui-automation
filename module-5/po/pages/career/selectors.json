@@ -1,0 +1,14 @@
+{
+  "Cookie Accept Button": ".cookie-disclaimer__button",
+  "Header Logo": ".header__logo",
+  "Search Form": ".job-search",
+  "Location Filter Box": ".select2-selection__rendered",
+  "Position Name": ".search-result__item-name",
+  "Position Location": ".search-result__location",
+  "Selected Department": ".selected-items .filter-tag",
+  "Department Filter Box": ".job-search__departments",
+  "Department Filter Box Label": ".job-search__departments .selected-label",
+  "Search Button": ".recruiting-search__submit",
+  "Expand Country Button": "//li[@class='select2-results__option dropdown-cities']//strong",
+  "Job Description": ".recruiting-page__top-description"
+}
