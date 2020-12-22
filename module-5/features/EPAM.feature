@@ -24,11 +24,11 @@ Feature: EPAM site
 
     When Apply button of <PositionName> is clicked
     Then The "Detailed" page should be opened
-    And The "Job Description" should contain "<City>" text
     And The "Job Description" should contain "<PositionName>" text
+    And The "Job Description" should contain "<City>" text
 
     Examples:
-      | # | Country | City     | Department                | PositionName             |
-      | 1 | Hungary | Debrecen | Software Test Engineering | Test Automation Engineer |
-#      | 2 | Belarus | Minsk    | Software Architecture     | Java Solution Architect  |
-    # Note: Test Automation Architect has been changed to Java Solution Architect in the data due to there is no open position for that currently
+      | # | Country | City     | Department                | PositionName              |
+      | 1 | Hungary | Debrecen | Software Test Engineering | Test Automation Engineer  |
+      | 2 | Belarus | Minsk    | Software Architecture     | Python Solution Architect |
+    # Note: Test Automation Architect has been changed to Python Solution Architect in the data due to there is no open position for that currently

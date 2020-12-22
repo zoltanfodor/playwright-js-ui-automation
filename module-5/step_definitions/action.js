@@ -27,23 +27,20 @@ When(/^Click on ([^"]+)$/, async elementName => {
 });
 
 When(/^Apply button of ([^"]+) is clicked$/, async positionName => {
-    const applyElement = driver.findElement(By.xpath(`.//li[contains(@class,\"search-result__item\")][.//a[contains(@class,\"search-result__item-name\")][contains(text(),\"${positionName}\")]]//a[contains(@class,\"search-result__item-apply\")]`));
-    await driver.wait(() => {
-        return applyElement.isDisplayed();
-    });
-    await applyElement.click();
+    const applyElement = await Element.findElementWithWaitXpath(`.//li[contains(@class,\"search-result__item\")][.//a[contains(@class,\"search-result__item-name\")][contains(text(),\"${positionName}\")]]//a[contains(@class,\"search-result__item-apply\")]`)
+    return applyElement.click();
 });
 
 When(/^Select `([^"]+)` \/ `([^"]+)`$/, async (countryName, cityName) => {
     await Career.selectLocation(countryName, cityName);
 });
 
-When(/^I wait (\d+) seconds?$/, async number => {
-    await driver.sleep(number * 1000);
-});
-
 When(/^Select ([^"]+) element$/, async elementName => {
     const selectedElementSelector = `//span[contains(@class, 'checkbox-custom-label')][contains(text(), '${elementName}')]`;
     const selectedElement = await Element.waitUntilElementIsVisibleXpath(selectedElementSelector);
     return selectedElement.click();
+});
+
+When(/^I wait (\d+) seconds?$/, async number => {
+    await driver.sleep(number * 1000);
 });

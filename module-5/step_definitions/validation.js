@@ -7,6 +7,7 @@ const EpamCareers = require("../po/pages/career/index");
 const JobDetailed = require("../po/pages/jobList/index");
 const Career = new EpamCareers("https://www.epam.com/careers");
 const Detailed = new JobDetailed("/job-listings/job");
+const Element = require("../support/helpers");
 
 
 Then(/^The page is opened$/, async () => {
@@ -30,7 +31,7 @@ Then(/^The Department filter box should contain "([^"]+)" tile$/, async title =>
 });
 
 Then(/^The `([^"]+)` position should be visible$/, async positionName => {
-    const element = await Career.findElementByElementName("Position Name");
+    const element = await Element.findElementWithWaitXpath(`.//li[contains(@class,\"search-result__item\")][.//a[contains(@class,\"search-result__item-name\")][contains(text(),\"${positionName}\")]]`);
     expect(await element.getText()).to.contain(positionName);
 });
 
@@ -43,7 +44,7 @@ Then(/^The department of the position should be `([^"]+)`$/, async departmentNam
 Then(/^The location of the position should be `([^"]+)`, `([^"]+)`$/, async (cityName, countryName) => {
     const location = await Career.findElementByElementName("Position Location");
 
-    return expect((cityName + ", " + countryName + " OR REMOTE").toUpperCase()).to.be.equal(await location.getText());
+    return expect(await location.getText()).to.contain((cityName + ", " + countryName).toUpperCase());
 });
 
 Then(/^There should be an Apply button for the `([^"]+)` position$/, async positionName => {
@@ -57,7 +58,3 @@ Then(/^The "([^"]+)" should contain "([^"]+)" text$/, async (elementName, text) 
 Then(/^The "Detailed" page should be opened$/, async () => {
     return expect(await Detailed.isPageOpened()).to.be.true;
 });
-
-// Then(/^"([^"]+)" page should be opened$/, async pageName => {
-//     return expect(await [pageName].isPageOpened()).to.be.true;
-// });
