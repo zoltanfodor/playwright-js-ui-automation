@@ -11,44 +11,40 @@ class Elements {
      * Returns the element of the given Css selector.
      *
      * @param selector
-     * @returns {Promise<[]>}
+     * @returns {Promise}
      */
     async findElementWithWaitCss(selector) {
-        const element = await driver.wait(until.elementLocated(By.css(selector)), constants.waitTimeOut);
-        return element;
+        return driver.wait(until.elementLocated(By.css(selector)), constants.waitTimeOut);
     }
 
     /**
      * Returns the element of the given Xpath selector.
      *
      * @param selector
-     * @returns {Promise<[]>}
+     * @returns {Promise}
      */
     async findElementWithWaitXpath(selector) {
-        const element = await driver.wait(until.elementLocated(By.xpath(selector)), constants.waitTimeOut);
-        return element;
+        return driver.wait(until.elementLocated(By.xpath(selector)), constants.waitTimeOut);
     }
 
     /**
      * Wait and returns the element of the given Xpath selector.
      *
      * @param selector
-     * @returns {Promise<[]>}
+     * @returns {Promise}
      */
     async waitUntilElementIsVisibleXpath(selector) {
-        const element = await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(selector))), constants.waitTimeOut);
-        return element;
+        return driver.wait(until.elementIsVisible(driver.findElement(By.xpath(selector))), constants.waitTimeOut);
     }
 
     /**
      * Returns the element of the given selector.
      *
      * @param selector
-     * @returns {Promise<[]>}
+     * @returns {Promise}
      */
     async findElementByCss(selector) {
-        const element = await driver.findElement(By.css(selector));
-        return element;
+        return driver.findElement(By.css(selector));
     }
 }
 

@@ -9,6 +9,6 @@
   "Department Filter Box": ".job-search__departments",
   "Department Filter Box Label": ".job-search__departments .selected-label",
   "Search Button": ".recruiting-search__submit",
-  "Expand Country Button": "//li[@class='select2-results__option dropdown-cities']//strong",
+  "Expand Country Button": "li.select2-results__option.dropdown-cities strong",
   "Job Description": ".recruiting-page__top-description"
 }

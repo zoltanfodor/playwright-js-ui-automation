@@ -11,23 +11,23 @@ const Element = require("../support/helpers");
 
 
 Then(/^The page is opened$/, async () => {
-    return expect(await Career.isCareerPageLoaded()).to.be.true;
+    expect(await Career.isCareerPageLoaded()).to.be.true;
 });
 
 Then(/^The search form is visible$/, async () => {
-    return expect(await Career.isSearchFormLoaded()).to.be.true;
+    expect(await Career.isSearchFormLoaded()).to.be.true;
 });
 
 Then(/^The ([^"]+) should contain "([^"]+)"$/, async (elementName, text) => {
     const element = await Career.findElementByElementName(elementName);
-    return expect(await element.getText()).to.equal(text);
+    expect(await element.getText()).to.equal(text);
 });
 
 Then(/^The Department filter box should contain "([^"]+)" tile$/, async title => {
     const titleSelector = ".job-search__departments";
     const elementText = await driver.wait(until.elementLocated(By.css(titleSelector)), 5000).getText();
 
-    return expect(elementText).to.be.equal(title);
+    expect(elementText).to.be.equal(title);
 });
 
 Then(/^The `([^"]+)` position should be visible$/, async positionName => {
@@ -38,23 +38,23 @@ Then(/^The `([^"]+)` position should be visible$/, async positionName => {
 Then(/^The department of the position should be `([^"]+)`$/, async departmentName => {
     const selectedDepartment = await Career.findElementByElementName("Selected Department");
 
-    return expect(await selectedDepartment.getText()).to.be.equal(departmentName.toUpperCase());
+    expect(await selectedDepartment.getText()).to.be.equal(departmentName.toUpperCase());
 });
 
 Then(/^The location of the position should be `([^"]+)`, `([^"]+)`$/, async (cityName, countryName) => {
     const location = await Career.findElementByElementName("Position Location");
 
-    return expect(await location.getText()).to.contain((cityName + ", " + countryName).toUpperCase());
+    expect(await location.getText()).to.contain((cityName + ", " + countryName).toUpperCase());
 });
 
 Then(/^There should be an Apply button for the `([^"]+)` position$/, async positionName => {
-    return expect(await Career.isGivenApplyButtonVisible(positionName)).to.be.true;
+    expect(await Career.isGivenApplyButtonVisible(positionName)).to.be.true;
 });
 
 Then(/^The "([^"]+)" should contain "([^"]+)" text$/, async (elementName, text) => {
-    return expect(await Detailed.getElementText(elementName)).to.contain(text);
+    expect(await Detailed.getElementText(elementName)).to.contain(text);
 });
 
 Then(/^The "Detailed" page should be opened$/, async () => {
-    return expect(await Detailed.isPageOpened()).to.be.true;
+    expect(await Detailed.isPageOpened()).to.be.true;
 });

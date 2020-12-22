@@ -24,7 +24,8 @@ class EpamCareers {
 
     async isCareerPageLoaded() {
         const currentURL = await driver.getCurrentUrl();
-        return (currentURL.includes("/careers") && await Elements.findElementByCss(selectors["Header Logo"])).isDisplayed();
+        const element = await Elements.findElementByCss(selectors["Header Logo"]);
+        return currentURL.includes(this.url) && await element.isDisplayed();
     }
 
     async isSearchFormLoaded() {
@@ -61,19 +62,20 @@ class EpamCareers {
     async selectLocation(countryName, cityName) {
         const fullSelector = `//li[contains(@class,"select2-results__option dropdown-cities")][@aria-label=\"${countryName}\"]//ul//li[contains(text(), \"${cityName}\")]`;
         const countrySelector = `//li[@aria-label=\"${countryName}\"]`;
-        const expandedElement = await Elements.findElementWithWaitXpath(selectors["Expand Country Button"]);
+        const expandedElement = await Elements.findElementWithWaitCss(selectors["Expand Country Button"]);
         const expandedElementText = await expandedElement.getText();
-        if(expandedElementText !== countryName) {
+        if (expandedElementText !== countryName) {
             await driver.sleep(1000);
             const countryElement = await Elements.findElementWithWaitXpath(countrySelector);
-            countryElement.click();
+            await countryElement.click();
             await driver.sleep(1000);
         }
         try {
             const fullElement = await Elements.waitUntilElementIsVisibleXpath(fullSelector);
-            fullElement.click();
+            await fullElement.click();
         } catch (e) {
-            console.log(`The item located ${fullSelector} cannot be clicked!\nError message: ${e.message}`);
+            throw new Error(`The item located ${fullSelector} cannot be clicked!\nError message: ${e.message}`);
+
         }
     }
 }

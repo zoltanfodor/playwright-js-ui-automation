@@ -7,7 +7,7 @@
     "test:module-2": "mocha module-2/test/*.spec.js",
     "test:module-3": "mocha module-3/test/*.spec.js",
     "test:module-4": "mocha module-4/test/*.spec.js",
-    "test:module-5": "cucumber-js module-5/features/EPAM.feature --require module-5/step_definitions/*.js"
+    "test:module-5": "cucumber-js module-5/features/EPAM.feature --require module-5/step_definitions/*.js --require module-5/support/*.js"
   },
   "repository": {
     "type": "git",
