@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript UI automation project which is the base of my University thesis",
   "scripts": {
-    "test:module-5": "cucumber-js features/EPAM.feature --require step_definitions/*.js --require support/*.js"
+    "test": "cucumber-js features/EPAM.feature --require step_definitions/*.js --require support/*.js"
   },
   "repository": {
     "type": "git",
