@@ -1,31 +1,27 @@
 {
-  "name": "js-webinar",
+  "name": "js-ui-automation",
   "version": "1.0.0",
-  "description": "Tasks for JS webinar",
+  "description": "JavaScript UI automation project which is the base of my University thesis",
   "scripts": {
-    "test:module-1": "mocha module-1/test/*.spec.js",
-    "test:module-2": "mocha module-2/test/*.spec.js",
-    "test:module-3": "mocha module-3/test/*.spec.js",
-    "test:module-4": "mocha module-4/test/*.spec.js",
-    "test:module-5": "cucumber-js module-5/features/EPAM.feature --require module-5/step_definitions/*.js --require module-5/support/*.js"
+    "test:module-5": "cucumber-js features/EPAM.feature --require step_definitions/*.js --require support/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/szikszail/js-webinar.git"
+    "url": "git+https://github.com/zoltanfodor/js-ui-automation.git"
   },
-  "author": "Laszlo Szikszai <Laszlo_Szikszai@epam.com>",
+  "author": "Zoltan Fodor <Zoltan_Fodor1@epam.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/szikszail/js-webinar/issues"
+    "url": "https://github.com/zoltanfodor/js-ui-automation/issues"
   },
-  "homepage": "https://github.com/szikszail/js-webinar#readme",
+  "homepage": "https://github.com/zoltanfodor/js-ui-automation#readme",
   "dependencies": {
-    "chai": "^4.2.0",
-    "chromedriver": "^84.0.1",
-    "cucumber": "^5.1.0",
-    "jasmine": "^3.4.0",
-    "selenium-webdriver": "^4.0.0-alpha.7",
-    "sinon": "^7.3.2"
+    "chai": "^4.3.6",
+    "chromedriver": "^106.0.1",
+    "cucumber": "^6.0.7",
+    "jasmine": "^4.4.0",
+    "selenium-webdriver": "^4.5.0",
+    "sinon": "^14.0.1"
   },
   "devDependencies": {
     "protractor": "^7.0.0"

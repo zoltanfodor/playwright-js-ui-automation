@@ -1,7 +1,7 @@
 'use strict';
 require('chromedriver');
 const {Given, When} = require("cucumber");
-const EpamCareers = require("../po/pages/career/index");
+const EpamCareers = require("../po/pages/career");
 const Career = new EpamCareers("https://www.epam.com/careers");
 const Element = require("../support/helpers");
 
