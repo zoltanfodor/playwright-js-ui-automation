@@ -1,60 +1,61 @@
-'use strict';
-require('chromedriver');
-const {Then} = require("cucumber");
-const {By, until} = require('selenium-webdriver');
-const {expect} = require('chai');
-const EpamCareers = require("../po/pages/career");
-const JobDetailed = require("../po/pages/jobList");
-const Career = new EpamCareers("https://www.epam.com/careers");
-const Detailed = new JobDetailed("/job-listings/job");
-const Element = require("../support/helpers");
-
+const { Then } = require('@cucumber/cucumber');
+const { expect } = require('@playwright/test');
+const CareerPage = require('../po/pages/career/page-objects/careerPage');
+const CareerFunctions = require('../po/pages/career/business-functions/careerFunctions');
+const careerSelectors = require('../po/pages/career/selectors.json');
+const JobDetailsPage = require('../po/pages/jobDetails/page-objects/jobDetailsPage');
+const JobDetailsFunctions = require('../po/pages/jobDetails/business-functions/jobDetailsFunctions');
+const careerPage = new CareerPage();
+const careerFunctions = new CareerFunctions();
+const jobDetailsPage = new JobDetailsPage();
+const jobDetailsFunctions = new JobDetailsFunctions();
 
 Then(/^The page is opened$/, async () => {
-    expect(await Career.isCareerPageLoaded()).to.be.true;
+    expect(await careerPage.isCareerPageLoaded()).toBe(true);
 });
 
 Then(/^The search form is visible$/, async () => {
-    expect(await Career.isSearchFormLoaded()).to.be.true;
+    expect(await careerPage.isSearchFormLoaded()).toBe(true);
 });
 
-Then(/^The ([^"]+) should contain "([^"]+)"$/, async (elementName, text) => {
-    const element = await Career.findElementByElementName(elementName);
-    expect(await element.getText()).to.equal(text);
+Then(/^The "([^"]+)" text should (be|contain) "([^"]+)"$/, async (elementName, type, text) => {
+    const elementText = await page.locator(careerSelectors[elementName]);
+
+    switch (type) {
+        case 'contain': await expect(elementText).toContainText(text);
+        break;
+        default: await expect(elementText).toHaveText(text);
+    }
 });
 
-Then(/^The Department filter box should contain "([^"]+)" tile$/, async title => {
-    const titleSelector = ".job-search__departments";
-    const elementText = await driver.wait(until.elementLocated(By.css(titleSelector)), 5000).getText();
-
-    expect(elementText).to.be.equal(title);
+Then(/^The "([^"]+)" position should be visible$/, async positionName => {
+    const element = await page.locator(`//li[@class=\"search-result__item\"][.//a[@class=\"search-result__item-name\"][contains(text(),\"${positionName}\")]]//*[@class="search-result__item-name"]`);
+    await careerFunctions.scrollToTheBottom();
+    await expect(element).toHaveText(positionName);
 });
 
-Then(/^The `([^"]+)` position should be visible$/, async positionName => {
-    const element = await Element.findElementWithWaitXpath(`.//li[contains(@class,\"search-result__item\")][.//a[contains(@class,\"search-result__item-name\")][contains(text(),\"${positionName}\")]]`);
-    expect(await element.getText()).to.contain(positionName);
+Then(/^The location of the "([^"]+)" position should contain "([^"]+)", "([^"]+)"$/, async (positionName, cityName, countryName) => {
+    const location = await page.locator(`//li[@class=\"search-result__item\"][.//a[@class=\"search-result__item-name\"][contains(text(),\"${positionName}\")]]//*[@class="search-result__location"]`);
+
+    await expect(location).toContainText((cityName + ", " + countryName));
 });
 
-Then(/^The department of the position should be `([^"]+)`$/, async departmentName => {
-    const selectedDepartment = await Career.findElementByElementName("Selected Department");
-
-    expect(await selectedDepartment.getText()).to.be.equal(departmentName.toUpperCase());
+Then(/^The Apply button for the "([^"]+)" position should be visible$/, async positionName => {
+    expect(await careerPage.isGivenApplyButtonVisible(positionName)).toBe(true);
 });
 
-Then(/^The location of the position should be `([^"]+)`, `([^"]+)`$/, async (cityName, countryName) => {
-    const location = await Career.findElementByElementName("Position Location");
-
-    expect(await location.getText()).to.contain((cityName + ", " + countryName).toUpperCase());
-});
-
-Then(/^There should be an Apply button for the `([^"]+)` position$/, async positionName => {
-    expect(await Career.isGivenApplyButtonVisible(positionName)).to.be.true;
+Then(/^The Job Detailed page should be opened$/, async () => {
+    expect(await jobDetailsPage.isJobDetailsPageLoaded()).toBe(true);
 });
 
 Then(/^The "([^"]+)" should contain "([^"]+)" text$/, async (elementName, text) => {
-    expect(await Detailed.getElementText(elementName)).to.contain(text);
+    expect(await jobDetailsFunctions.isElementContainText(elementName, text)).toBe(true);
 });
 
-Then(/^The "Detailed" page should be opened$/, async () => {
-    expect(await Detailed.isPageOpened()).to.be.true;
-});
+// Then(/^The Department filter box should contain "([^"]+)" tile$/, async title => {
+//     const titleSelector = ".job-search__departments";
+//     const elementText = await driver.wait(until.elementLocated(By.css(titleSelector)), 5000).getText();
+//
+//     expect(elementText).to.be.equal(title);
+// });
+//

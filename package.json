@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "JavaScript UI automation project which is the base of my University thesis",
   "scripts": {
-    "test": "cucumber-js features/EPAM.feature --require step_definitions/*.js --require support/*.js"
+    "install-browser": "playwright install chromium",
+    "test": "cucumber-js --require configs/cucumber.conf.js --require step_definitions/*.js -f json:report/cucumber_report.json",
+    "report": "cucumber-js --require configs/reporter.conf.js"
   },
   "repository": {
     "type": "git",
@@ -15,15 +17,10 @@
     "url": "https://github.com/zoltanfodor/js-ui-automation/issues"
   },
   "homepage": "https://github.com/zoltanfodor/js-ui-automation#readme",
-  "dependencies": {
-    "chai": "^4.3.6",
-    "chromedriver": "^106.0.1",
-    "cucumber": "^6.0.7",
-    "jasmine": "^4.4.0",
-    "selenium-webdriver": "^4.5.0",
-    "sinon": "^14.0.1"
-  },
   "devDependencies": {
-    "protractor": "^7.0.0"
+    "@cucumber/cucumber": "^8.6.0",
+    "@playwright/test": "^1.23.4",
+    "cucumber-html-reporter": "^5.5.0",
+    "playwright": "^1.26.1"
   }
 }

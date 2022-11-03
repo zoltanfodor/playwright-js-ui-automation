@@ -1,34 +1,32 @@
-'use strict';
-require('chromedriver');
-const {Given, When} = require("cucumber");
-const EpamCareers = require("../po/pages/career");
-const Career = new EpamCareers("https://www.epam.com/careers");
-const Element = require("../support/helpers");
+const CareerPage = require('../po/pages/career/page-objects/careerPage');
+const CareerFunctions = require('../po/pages/career/business-functions/careerFunctions');
+const { Given, When } = require("@cucumber/cucumber");
+const careerPage = new CareerPage();
+const careerFunctions = new CareerFunctions();
 
 Given(/^The Epam Career page is opened$/, async () => {
-    await Career.navigate();
-    await Career.handleCookie();
+    await careerPage.navigate();
+    await careerPage.handleCookie();
 });
 
-When(/^Click on ([^"]+)$/, async elementName => {
-    await Career.clickOnElement(elementName);
+When(/^The "([^"]+)" is clicked$/, async elementName => {
+    await careerFunctions.clickOnElement(elementName);
 });
 
-When(/^Apply button of ([^"]+) is clicked$/, async positionName => {
-    const applyElement = await Element.findElementWithWaitXpath(`.//li[contains(@class,\"search-result__item\")][.//a[contains(@class,\"search-result__item-name\")][contains(text(),\"${positionName}\")]]//a[contains(@class,\"search-result__item-apply\")]`)
-    await applyElement.click();
+When(/^Apply button of "([^"]+)" is clicked$/, async positionName => {
+    await careerFunctions.clickOnApplyButton(positionName);
 });
 
-When(/^Select `([^"]+)` \/ `([^"]+)`$/, async (countryName, cityName) => {
-    await Career.selectLocation(countryName, cityName);
+When(/^The "([^"]+)" \/ "([^"]+)" is selected$/, async (countryName, cityName) => {
+    await careerFunctions.selectLocation(countryName, cityName);
 });
 
-When(/^Select ([^"]+) element$/, async elementName => {
+When(/^The "([^"]+)" skill is selected$/, async elementName => {
     const selectedElementSelector = `//span[contains(@class, 'checkbox-custom-label')][contains(text(), '${elementName}')]`;
-    const selectedElement = await Element.waitUntilElementIsVisibleXpath(selectedElementSelector);
+    const selectedElement = await page.locator(selectedElementSelector);
     await selectedElement.click();
 });
 
-When(/^I wait (\d+) seconds?$/, async number => {
-    await driver.sleep(number * 1000);
-});
+// When(/^I wait (\d+) seconds?$/, async number => {
+//     await page.waitFor(number * 1000);
+// });
