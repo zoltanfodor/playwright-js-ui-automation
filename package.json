@@ -1,7 +1,7 @@
 {
-  "name": "js-ui-automation",
+  "name": "cucumber-js-ui-automation",
   "version": "1.0.0",
-  "description": "JavaScript UI automation project which is the base of my University thesis",
+  "description": "JavaScript based UI automation project using cucumber-js",
   "scripts": {
     "install-browser": "playwright install chromium",
     "test": "cucumber-js --require configs/cucumber.conf.js --require step_definitions/*.js -f json:report/cucumber_report.json",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zoltanfodor/js-ui-automation.git"
+    "url": "git+https://github.com/zoltanfodor/cucumber-js-ui-automation"
   },
   "author": "Zoltan Fodor <Zoltan_Fodor1@epam.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zoltanfodor/js-ui-automation/issues"
+    "url": "https://github.com/zoltanfodor/cucumber-js-ui-automation/issues"
   },
-  "homepage": "https://github.com/zoltanfodor/js-ui-automation#readme",
+  "homepage": "https://github.com/zoltanfodor/cucumber-js-ui-automation#readme",
   "devDependencies": {
     "@cucumber/cucumber": "^8.6.0",
     "@playwright/test": "^1.23.4",
