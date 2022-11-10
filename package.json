@@ -1,26 +1,23 @@
 {
-  "name": "cucumber-js-ui-automation",
+  "name": "playwright-js-ui-automation",
   "version": "1.0.0",
-  "description": "JavaScript based UI automation project using cucumber-js",
+  "description": "JavaScript based UI automation project using playwright",
   "scripts": {
     "install-browser": "playwright install chromium",
-    "test": "cucumber-js --require configs/cucumber.conf.js --require step_definitions/*.js -f json:report/cucumber_report.json",
-    "report": "cucumber-js --require configs/reporter.conf.js"
+    "test": "playwright test -c \"./configs/playwright.config.js\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zoltanfodor/cucumber-js-ui-automation"
+    "url": "git+https://github.com/zoltanfodor/playwright-js-ui-automation"
   },
   "author": "Zoltan Fodor <Zoltan_Fodor1@epam.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zoltanfodor/cucumber-js-ui-automation/issues"
+    "url": "https://github.com/zoltanfodor/playwright-js-ui-automation/issues"
   },
-  "homepage": "https://github.com/zoltanfodor/cucumber-js-ui-automation#readme",
+  "homepage": "https://github.com/zoltanfodor/playwright-js-ui-automation#readme",
   "devDependencies": {
-    "@cucumber/cucumber": "^8.6.0",
-    "@playwright/test": "^1.23.4",
-    "cucumber-html-reporter": "^5.5.0",
+    "@playwright/test": "^1.26.1",
     "playwright": "^1.26.1"
   }
 }
