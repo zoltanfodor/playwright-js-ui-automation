@@ -30,7 +30,7 @@ To run tests, run
 $> npm run test
 ```
 
-To generate HTML report, run
+To show HTML report
 
 ```
 $> npm run report

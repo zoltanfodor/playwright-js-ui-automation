@@ -4,7 +4,8 @@
   "description": "JavaScript based UI automation project using playwright",
   "scripts": {
     "install-browser": "playwright install chromium",
-    "test": "playwright test -c \"./configs/playwright.config.js\""
+    "test": "playwright test -c \"./configs/playwright.config.js\"",
+    "report": "npx playwright show-report reports"
   },
   "repository": {
     "type": "git",

@@ -1,19 +1,14 @@
-const selectors = require('../selectors.json');
+import * as selectors from '../selectors.json';
 
-class JobDetailsPage {
-    constructor(
-        url = "https://www.epam.com/careers/job-listings/job"
-    ) { this.url = url };
+exports.JobDetailsPage = class JobDetailsPage {
+    constructor(page) {
+        this.page = page;
+        this.url = '/job-listings';
+    };
 
     async isJobDetailsPageLoaded() {
-        const currentURL = await page.url();
-        const jobDescription = await page.locator(selectors["Job Description"]);
-        const isDescriptionVisible = await jobDescription.isVisible();
-        // console.log('\n[isDescriptionVisible]: ' + isDescriptionVisible);
-        // console.log('\n[includeURL]: ' + currentURL.includes(this.url));
-
+        const currentURL = await this.page.url();
+        const isDescriptionVisible = await this.page.locator(selectors['Job Description']).isVisible();
         return (isDescriptionVisible && currentURL.includes(this.url));
     }
 }
-
-module.exports = JobDetailsPage;
