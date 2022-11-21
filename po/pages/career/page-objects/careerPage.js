@@ -1,9 +1,10 @@
 import * as selectors from '../selectors.json';
+import { mainURL } from '../../../../data/constants.json';
 
 exports.CareerPage = class CareerPage {
     constructor(page) {
         this.page = page;
-        this.url = 'https://www.epam.com/careers';
+        this.url = mainURL;
     }
 
     async navigate() {
@@ -17,7 +18,12 @@ exports.CareerPage = class CareerPage {
 
     async isCareerPageLoaded() {
         const currentURL = await this.page.url();
-        return currentURL.includes(this.url) && await this.page.isVisible(selectors['Filter Container']);
+        const isLoaded = (currentURL.includes(this.url) && await this.page.isVisible(selectors['Filter Container']));
+        if (isLoaded) {
+            return isLoaded;
+        } else {
+            throw new Error("The Career page is not loaded");
+        }
     }
 
     async isGivenApplyButtonVisible(positionName) {

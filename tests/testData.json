@@ -1,7 +1,16 @@
 {
-  "country": "Hungary",
-  "city": "Debrecen",
-  "skill": "Software, System, and Test Engineering",
-  "skillLabel": "Selected: ",
-  "position": "Lead Test Automation Engineer"
+  "first": {
+    "country": "Hungary",
+    "city": "Debrecen",
+    "skill": "Software, System, and Test Engineering",
+    "skillLabel": "Selected: ",
+    "position": "Lead Test Automation Engineer"
+  },
+  "second": {
+    "country": "Switzerland",
+    "city": "Zurich",
+    "skill": "Solution Architecture",
+    "skillLabel": "Selected: ",
+    "position": "Data Solution Architect"
+  }
 }
